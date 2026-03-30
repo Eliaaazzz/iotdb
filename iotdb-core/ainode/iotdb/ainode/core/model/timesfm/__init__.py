@@ -15,29 +15,3 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-
-from enum import Enum
-from typing import ContextManager, Optional, Protocol
-
-import torch
-
-
-class BackendType(Enum):
-    """
-    Different types of supported computation backends.
-    AINode will automatically select the available backend according to the order defined here.
-    """
-
-    TPU = "xla"
-    CUDA = "cuda"
-    CPU = "cpu"
-
-
-class BackendAdapter(Protocol):
-    type: BackendType
-
-    # device basics
-    def is_available(self) -> bool: ...
-    def device_count(self) -> int: ...
-    def make_device(self, index: Optional[int]) -> torch.device: ...
-    def set_device(self, index: int) -> None: ...

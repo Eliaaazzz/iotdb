@@ -21,6 +21,7 @@ import torch
 from iotdb.ainode.core.device.backend.base import BackendAdapter, BackendType
 from iotdb.ainode.core.device.backend.cpu_backend import CPUBackend
 from iotdb.ainode.core.device.backend.cuda_backend import CUDABackend
+from iotdb.ainode.core.device.backend.tpu_backend import TPUBackend
 from iotdb.ainode.core.device.device_utils import DeviceLike, parse_device_like
 from iotdb.ainode.core.device.env import DistEnv, read_dist_env
 from iotdb.ainode.core.log import Logger
@@ -44,6 +45,7 @@ class DeviceManager:
         self.env: DistEnv = read_dist_env()
 
         self.backends: dict[BackendType, BackendAdapter] = {
+            BackendType.TPU: TPUBackend(),
             BackendType.CUDA: CUDABackend(),
             BackendType.CPU: CPUBackend(),
         }

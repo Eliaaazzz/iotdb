@@ -173,4 +173,14 @@ BUILTIN_HF_TRANSFORMERS_MODEL_MAP = {
         },
         transformers_registered=True,
     ),
+    "timesfm": ModelInfo(
+        model_id="timesfm",
+        category=ModelCategory.BUILTIN,
+        state=ModelStates.INACTIVE,
+        model_type="timesfm2_5",
+        pipeline_cls="pipeline_timesfm.TimesFMPipeline",
+        repo_id="google/timesfm-2.5-200m-transformers",
+        # Uses upstream transformers.TimesFm2_5ModelForPrediction
+        transformers_registered=True,
+    ),
 }
