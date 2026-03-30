@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ainode-tpu-poc"
+version = "0.1.0"
+description = "PoC: TPU Backend & TimesFM 2.5 Integration for IoTDB-AINode"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+authors = [
+  { name = "Elia", email = "elialiulzy@gmail.com" },
+]
+dependencies = [
+  "torch>=2.9.0,<2.12.0",
+]
+
+[project.optional-dependencies]
+tpu = [
+  "torch_xla>=2.9.0",
+]
+dev = [
+  "pytest>=7.0",
+  "pytest-timeout>=2.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ainode_tpu_poc"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "*Test"
+python_functions = "test_*"
